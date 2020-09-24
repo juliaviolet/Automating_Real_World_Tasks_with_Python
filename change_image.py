@@ -3,10 +3,10 @@
 import os
 from PIL import Image
 
-image_path = os.path.expanduser('~') + '/supplier-data/images/'
-
-for image in os.listdir(image_path):
-    if '.tiff' in image and '.' not in image[0]:
-        img = Image.open(image_path + image)
-        img.resize((600, 400)).convert("RGB").save(image_path + image.split('.')[0] + '.jpeg', 'jpeg')
+old_path = os.path.expanduser('~') + '/images/'
+new_path = '/opt/icons/'
+for image in os.listdir(old_path):
+    if '.' not in image[0]:
+        img = Image.open(old_path + image)
+        img.rotate(-90).resize((128, 128)).convert("RGB").save(new_path + image.split('.')[0], 'jpeg')
         img.close()
